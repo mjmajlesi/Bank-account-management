@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-main text-White text-base;
+  font-family: "Poppins", serif;
+  height: 100vh;
+}
