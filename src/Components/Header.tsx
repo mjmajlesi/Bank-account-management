@@ -1,9 +1,12 @@
 import React from "react";
 import Lottie from "react-lottie";
-import animationData from "../../public/Animation.json";
+import animationData from "../assets/Animation.json";
 import Container from "./Container";
 import Button from "./Buttun";
+import { useNavigate } from "react-router-dom";
 function Header() {
+  const navigate = useNavigate();
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -11,6 +14,10 @@ function Header() {
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
+  };
+
+  const goLinks = (path: string) => {
+    navigate(path)
   };
   return (
     <Container>
@@ -23,8 +30,8 @@ function Header() {
             and save you time and money by beautiful UI and Ux.
           </p>
           <div className="my-5 p-5 flex gap-10">
-            <Button variant="normal" className="p-3">My Accuont</Button>
-            <Button variant="normal" className="p-3">Debts & Receivable</Button>
+            <Button onClick={() => goLinks("/account")} variant="normal" className="p-3">My Accuont</Button>
+            <Button onClick={() => goLinks("/DebtsReceivable")} variant="normal" className="p-3">Debts & Receivable</Button>
           </div>
         </div>
         <div className="w-1/3">

@@ -28,10 +28,10 @@ function Navbar() {
 
   return (
     <div>
-      <div className={`${isNavOpen ? "Navbar" : "mb-24"} mt-4`}>
+      <div className={`${isNavOpen ? "Navbar" : "mb-24"}`}>
         <Container>
-          <div className="flex justify-between items-center">
-            <p className="text-3xl font-medium">MJ</p>
+          <div className="flex justify-between items-center pt-3">
+            <p className="text-3xl font-medium ">MJ</p>
             <div
               onClick={toggleNav}
               className="absolute t0p-[0.75rem] right-[1rem] md:hidden flex flex-col justify-between w-[2.25rem] h-[2rem]"
@@ -56,9 +56,9 @@ function Navbar() {
             <div className="Login max-md:hidden">
               <Button
                 variant="login"
-                className=" bg-gradient-to-r from-[#1d1d9a] to-[#1e98d5] transition delay-150 hover:scale-110 "
+                className=" bg-gradient-to-r from-[#FED8BE] to-[#FCFCFC] transition delay-150 hover:scale-110 "
               >
-                <Link className="text-lg p-1" to={"/login"}>Login</Link>
+                <Link className="text-lg p-1 text-[#000]" to={"/login"}>Login</Link>
               </Button>
             </div>
           </div>
