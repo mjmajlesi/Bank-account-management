@@ -9,7 +9,8 @@ interface Icart {
 
 function Cart({ name, image }: Icart) {
   const [ShowModal, setShowModal] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(0);
+  const [Spent, setSpent] = useState(0);
 
   const ShowToModal = () => {
     setShowModal(!ShowModal);
@@ -27,7 +28,7 @@ function Cart({ name, image }: Icart) {
         <Button
           variant="normal"
           onClick={ShowToModal}
-          className="py-0.5 px-1 w-full"
+          className="py-0.5 px-1 w-full  bg-gradient-to-r from-[#FED8BE] to-[#FCFCFC] transition delay-150 hover:scale-110 "
         >
           Edit
         </Button>
@@ -38,10 +39,11 @@ function Cart({ name, image }: Icart) {
             SetShowModal={setShowModal}
             value={value}
             setValue={setValue}
-
+            Spent={Spent}
+            setSpent={setSpent}
           />
         )}
-        <span className="text-sm text-Blue"> - 36000 T</span>
+        <span className="text-sm text-Blue">{value != 0 && value - Spent}</span>
       </div>
     </div>
   );

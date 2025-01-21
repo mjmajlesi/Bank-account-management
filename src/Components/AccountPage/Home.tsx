@@ -8,8 +8,34 @@ import dinnigHall from "../../image/food-svgrepo-com.svg";
 import taxi from "../../image/taxi-svgrepo-com.svg";
 import Tea from "../../image/tea-svgrepo-com.svg";
 
-
 function Home() {
+
+  const Category = [
+  {
+    name : "CocaCola",
+    image : CocaCola,
+  },
+  {
+    name : "Coffee",
+    image : Coffee,
+  },
+  {
+    name : "Bus",
+    image : Bus,
+  },
+  {
+    name : "Dinnig Hall",
+    image : dinnigHall,
+  },
+  {
+    name : "Taxi",
+    image : taxi,
+  },
+  {
+    name : "Tea",
+    image : Tea,
+  },
+];
   return (
     <div>
         <Container>
@@ -23,12 +49,11 @@ function Home() {
         </div>
       </div>
       <div className="grid grid-cols-4 gap-10">
-        <Cart name="CocaCola" image={CocaCola}   />
-        <Cart name="Coffee" image={Coffee} />
-        <Cart name="Bus" image={Bus}  />
-        <Cart name="Dinnig Hall" image={dinnigHall}  />
-        <Cart name="Taxi" image={taxi} />
-        <Cart name="Tea" image={Tea}  />
+        {
+          Category.map((cart , index) => (
+            <Cart key={index} name={cart.name} image={cart.image} />
+          ))
+        }
       </div>
       </Container>
     </div>
