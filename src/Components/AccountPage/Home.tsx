@@ -1,46 +1,13 @@
 import DoughnutChart from "./DoughnutChart";
 import Cart from "./Cart";
 import Container from "../Container";
-import CocaCola from "../../image/coca-cola-logo-svgrepo-com.svg";
-import Bus from "../../image/bus-svgrepo-com.svg";
-import Coffee from "../../image/coffee-svgrepo-com.svg";
-import dinnigHall from "../../image/food-svgrepo-com.svg";
-import taxi from "../../image/taxi-svgrepo-com.svg";
-import Tea from "../../image/tea-svgrepo-com.svg";
 import Button from "../Buttun";
+import { useAccountContext } from "./AccountContext";
 import { useState } from "react";
-import Modal from "./Modal";
-
 function Home() {
-  const Category = [
-    {
-      name: "CocaCola",
-      image: CocaCola,
-    },
-    {
-      name: "Coffee",
-      image: Coffee,
-    },
-    {
-      name: "Bus",
-      image: Bus,
-    },
-    {
-      name: "Dinnig Hall",
-      image: dinnigHall,
-    },
-    {
-      name: "Taxi",
-      image: taxi,
-    },
-    {
-      name: "Tea",
-      image: Tea,
-    },
-  ];
 
+  const {Totalvalue ,setTotalvalue , Carts} = useAccountContext();
   const [ShowModal, setShowModal] = useState(false);
-  const [Totalvalue, setTotalvalue] = useState(0);
 
   const ShowToModal = () => {
     setShowModal(!ShowModal);
@@ -79,8 +46,8 @@ function Home() {
           </div>
         </div>
         <div className="grid grid-cols-4 gap-10">
-          {Category.map((cart, index) => (
-            <Cart key={index} name={cart.name} image={cart.image} />
+          {Carts.map((cart, index) => (
+            <Cart key={index} name={cart.name} image={cart.image} id={cart.id} value={cart.value} spent={cart.spent} />
           ))}
         </div>
       </Container>
