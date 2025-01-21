@@ -1,28 +1,28 @@
 import React from "react";
 import Button from "../Buttun";
+import { useAccountContext } from "./AccountContext";
 
 interface Imodal {
   ShowModal: boolean;
   SetShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   name: string;
   value: number;
-  setValue: React.Dispatch<React.SetStateAction<number>>;
   Spent: number;
-  setSpent: React.Dispatch<React.SetStateAction<number>>;
+  id:number;
 }
 const Modal = ({
   ShowModal,
   SetShowModal,
   name,
   value,
-  setValue,
   Spent,
-  setSpent,
+  id,
 }: Imodal) => {
+  
   const ChangeModal = () => {
     SetShowModal(!ShowModal);
   };
-
+  const { updateCartsSpent , updateCartsValue , TotalValueResie} = useAccountContext()
   return (
     <div className="w-[100vw] h-[100vh] top-0 right-0 bottom-0 left-0 fixed">
       <div
@@ -41,7 +41,7 @@ const Modal = ({
               className="bg-[rgba(49,49,49,0.8)] p-1 rounded-lg"
               value={value}
               type="number"
-              onChange={(e) => setValue(Number(e.target.value))}
+              onChange={(e) => updateCartsValue(Number(e.target.value) , id)}
             />
           </div>
           <div>
@@ -52,7 +52,7 @@ const Modal = ({
               id="spent"
               className="bg-[rgba(49,49,49,0.8)] p-1 rounded-lg"
               type="number"
-              onChange={(e) => setSpent(Number(e.target.value))}
+              onChange={(e) => updateCartsSpent(Number(e.target.value) , id)}
             />
           </div>
           <div>
@@ -70,11 +70,11 @@ const Modal = ({
         </div>
 
         <Button
-          onClick={ChangeModal}
+          onClick={() => (ChangeModal() , TotalValueResie(value , Spent))}
           className="mt-5 text-center w-full"
           variant="normal"
         >
-          Close
+          Close & Submit
         </Button>
       </div>
     </div>

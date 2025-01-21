@@ -3,18 +3,21 @@ import Button from "../Buttun";
 import Modal from "./Modal";
 
 interface Icart {
+  id : number;
   name: string;
   image: string;
+  value : number;
+  spent : number;
 }
 
-function Cart({ name, image }: Icart) {
+function Cart({ name, image, id, value , spent }: Icart) {
+
   const [ShowModal, setShowModal] = useState(false);
-  const [value, setValue] = useState(0);
-  const [Spent, setSpent] = useState(0);
 
   const ShowToModal = () => {
     setShowModal(!ShowModal);
   };
+
   return (
     <div className="border-2 border-white w-[300px] flex items-center p-3 justify-between rounded-xl">
       <div>
@@ -34,16 +37,15 @@ function Cart({ name, image }: Icart) {
         </Button>
         {ShowModal && (
           <Modal
-            name={name}
             ShowModal={ShowModal}
             SetShowModal={setShowModal}
+            name={name}
             value={value}
-            setValue={setValue}
-            Spent={Spent}
-            setSpent={setSpent}
+            Spent={spent}
+            id={id}
           />
         )}
-        <span className="text-sm text-Blue">{value != 0 && value - Spent}</span>
+        <span className="text-sm text-Blue">{value != 0 && value - spent}</span>
       </div>
     </div>
   );

@@ -1,6 +1,9 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 
-function Container({children} : {children : ReactNode}) {
+export interface Ichildren {
+  children : React.ReactNode
+}
+function Container({children} : Ichildren) {
   return (
     <div className=' md:mx-24 mx-[25px]'>
         {children}
