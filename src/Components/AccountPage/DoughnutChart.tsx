@@ -11,12 +11,12 @@ ChartJs.register(
 
 function DoughnutChart() {
 
-  const {Carts} = useAccountContext()
+  const {Cards} = useAccountContext()
 
   const data = {
     labels : Category.map(cart => cart.name),
     datasets : [{
-      data : Carts.map(cart => (cart.value - cart.spent)),
+      data : Cards.map(cart => (cart.value - cart.spent)),
       backgroundColor : Category.map(cart => cart.color),
       borderColor : ["black"],
       borderWidth: 2,

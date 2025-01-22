@@ -22,7 +22,7 @@ const Modal = ({
   const ChangeModal = () => {
     SetShowModal(!ShowModal);
   };
-  const { updateCartsSpent , updateCartsValue , TotalValueResie} = useAccountContext()
+  const { updateCartsSpent , updateCartsValue , TotalvalueIncre} = useAccountContext()
   return (
     <div className="w-[100vw] h-[100vh] top-0 right-0 bottom-0 left-0 fixed">
       <div
@@ -70,7 +70,7 @@ const Modal = ({
         </div>
 
         <Button
-          onClick={() => (ChangeModal() , TotalValueResie(value , Spent))}
+          onClick={() => (ChangeModal(), TotalvalueIncre(value , Spent , id))}
           className="mt-5 text-center w-full"
           variant="normal"
         >

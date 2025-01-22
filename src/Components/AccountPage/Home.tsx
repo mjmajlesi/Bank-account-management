@@ -6,7 +6,7 @@ import { useAccountContext } from "./AccountContext";
 import { useState } from "react";
 function Home() {
 
-  const {Totalvalue ,setTotalvalue , Carts} = useAccountContext();
+  const {Totalvalue ,setTotalvalue , Cards} = useAccountContext();
   const [ShowModal, setShowModal] = useState(false);
 
   const ShowToModal = () => {
@@ -46,7 +46,7 @@ function Home() {
           </div>
         </div>
         <div className="grid grid-cols-4 gap-10">
-          {Carts.map((cart, index) => (
+          {Cards.map((cart, index) => (
             <Cart key={index} name={cart.name} image={cart.image} id={cart.id} value={cart.value} spent={cart.spent} />
           ))}
         </div>
