@@ -1,6 +1,7 @@
-import React from "react";
 import {Chart as ChartJs , ArcElement , Tooltip , Legend} from "chart.js";
 import {Doughnut} from "react-chartjs-2";
+import { Category } from "../../data";
+import { useAccountContext } from "./AccountContext";
 
 ChartJs.register(
     ArcElement,
@@ -9,20 +10,23 @@ ChartJs.register(
 )
 
 function DoughnutChart() {
+
+  const {Carts} = useAccountContext()
+
   const data = {
-    labels : ["Caffee" , "CocaCola" , "Dinnig Hall"],
+    labels : Category.map(cart => cart.name),
     datasets : [{
-        label : "Poll",
-        data : [3 , 5 , 5],
-        backgroundColor : ["red" , "white" , "green"],
-        borderColor : ["black"],
-        borderWidth: 2,
-    }]
-  };
+      data : Carts.map(cart => (cart.value - cart.spent)),
+      backgroundColor : Category.map(cart => cart.color),
+      borderColor : ["black"],
+      borderWidth: 2,
+  }]
+  }
 
   const options = {
     cutout : "60%"
   }
+  console.log(data)
   return (
     <div>
         <Doughnut

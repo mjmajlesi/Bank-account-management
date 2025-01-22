@@ -8,6 +8,8 @@ interface ICarts {
   name : string;
   value : number;
   spent : number;
+  color : string;
+  TotalValue : number;
 }
 
 export interface IAccountContext {

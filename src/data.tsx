@@ -11,41 +11,53 @@ export const Category = [
       name: "CocaCola",
       image: CocaCola,
       value : 0,
-      spent : 0
+      spent : 0,
+      TotalValue : 0,
+      color : "red"
     },
     {
       id : 2,
       name: "Coffee",
       image: Coffee,
       value : 0,
-      spent : 0
+      spent : 0,
+      TotalValue : 0,
+      color : "Brown"
     },
     {
       id : 3,
       name: "Bus",
       image: Bus,
       value : 0,
-      spent : 0
+      spent : 0,
+      TotalValue : 0,
+      color : "yellow"
     },
     {
       id : 4,
       name: "Dinnig Hall",
       image: dinnigHall,
       value : 0,
-      spent : 0
+      spent : 0,
+      TotalValue : 0,
+      color : "white"
     },
     {
       id : 5,
       name: "Taxi",
       image: taxi,
       value : 0,
-      spent : 0
+      spent : 0,
+      TotalValue : 0,
+      color : "orange"
     },
     {
       id : 6,
       name: "Tea",
       image: Tea,
       value : 0,
-      spent : 0
+      spent : 0,
+      TotalValue : 0,
+      color : "black"
     },
   ];
