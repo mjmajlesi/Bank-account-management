@@ -16,7 +16,7 @@ function DoughnutChart() {
   const data = {
     labels : Category.map(cart => cart.name),
     datasets : [{
-      data : Cards.map(cart => (cart.value - cart.spent)),
+      data : Cards.map(cart => (cart.spent)),
       backgroundColor : Category.map(cart => cart.color),
       borderColor : ["black"],
       borderWidth: 2,
