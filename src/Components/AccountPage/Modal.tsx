@@ -70,7 +70,7 @@ const Modal = ({
         </div>
 
         <Button
-          onClick={() => (ChangeModal(), TotalvalueIncre(value , Spent , id))}
+          onClick={() => (ChangeModal(), TotalvalueIncre(id))}
           className="mt-5 text-center w-full"
           variant="normal"
         >

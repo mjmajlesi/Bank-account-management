@@ -18,20 +18,9 @@ function Home() {
       <Container>
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-around gap-10 my-20">
           <div className="flex flex-col items-center gap-5">
-            {ShowModal ? (
-              <input
-                className="text-center text-5xl font-bold border-2 rounded-xl  w-[400px] border-white outline-none bg-main"
-                type="text"
-                onChange={(e) => setTotalvalue(Number(e.target.value))}
-              />
-            ) : (
-              <input
-                className="text-center text-5xl font-bold  w-[400px] bg-main"
-                type="text"
-                value={Totalvalue}
-                disabled
-              />
-            )}
+              <span className="text-5xl font-semibold ">
+                {Totalvalue}
+              </span>
             <p>For 18 january To 3 February</p>
             <Button
               variant="normal"
