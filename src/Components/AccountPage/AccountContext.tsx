@@ -1,7 +1,7 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext } from "react";
 import { Ichildren } from "../Container";
-import { Category } from "../../data";
 import useLocalStorage from "../../useLocalStorage";
+import useLocalNumStorage from "./useLocalNumStorage";
 
 interface ICarts {
   id : number;
@@ -16,13 +16,12 @@ interface ICarts {
 export interface IAccountContext {
   Totalvalue: number;
   setTotalvalue: React.Dispatch<React.SetStateAction<number>>;
-  Carts : ICarts[];
-  setCarts : React.Dispatch<React.SetStateAction<ICarts[]>>;
   updateCartsValue : (num : number , id : number) => void;
   updateCartsSpent : (num : number , id : number) => void;
   SetCards : React.Dispatch<React.SetStateAction<ICarts[]>>;
   Cards : ICarts[];
-  TotalvalueIncre : (id : number) => void;
+  TotalvalueIncre : (id : number , spent : number ,value:number)=> void;
+  TotalSpent : number;
 }
 
 const AccountContext = createContext({} as IAccountContext);
@@ -34,76 +33,44 @@ export const useAccountContext = ()=>{
 
 export function AccountContextProvider({children} : Ichildren){
 
-    const [Totalvalue, setTotalvalue] = useState(() => {
-        if (typeof window !== 'undefined') {
-          const saved = localStorage.getItem('totalValue');
-          const parsedValue = saved ? parseInt(saved, 10) : 0;
-          return isNaN(parsedValue) ? 0 : parsedValue;
-        }
-        return 0;
-      });
+    const [Totalvalue , setTotalvalue] = useLocalNumStorage("totalValue");
+    const [TotalSpent , setTotalSpent] = useLocalNumStorage("totalSpent");
 
-      useEffect(() => {
-        localStorage.setItem('totalValue', Totalvalue.toString());
-      }, [Totalvalue]);
-
-      const [Carts , setCarts] = useState<ICarts[]>(Category);
       const [Cards , SetCards] = useLocalStorage<ICarts[]>("Carts" , []);
 
-      const updateCartsValue = (num : number , id : number)=> {
-        setCarts(carts => carts.map(cart=> cart.id == id ? {...cart, value: num} : cart))
-        SetCards(cardItems => {
-          const existingItemIndex = cardItems.findIndex(card => card.id === id);
-          if (existingItemIndex !== -1) {
-              return cardItems.map((card, index) =>
-                  index === existingItemIndex ? { ...card, value: num  , TotalValue: num  } : card
-              );
-          } else {
-              const newItem = Carts.find(cart => cart.id === id);
-              if (newItem) {
-                  return [...cardItems, { ...newItem, value: num  , TotalValue: num  }];
-              } else {
-                  return [...cardItems, { id, value: num, image: '', name: '', spent: 0, color: '', TotalValue: 0 }];
-              }
-          }
-      });
+      const updateCartsValue = (num: number, id: number) => {
+        SetCards((prevCards) =>
+          prevCards.map((card) =>
+            card.id === id ? { ...card, value: num, TotalValue: num } : card
+          )
+        );
       };
-      const updateCartsSpent = (num : number , id : number)=> {
-        setCarts(carts => carts.map(cart=> cart.id == id ? {...cart, spent: num } : cart))
-        SetCards(cardItems => {
-          const existingItemIndex = cardItems.findIndex(card => card.id === id);
-          if (existingItemIndex !== -1) {
-              return cardItems.map((card, index) =>
-                  index === existingItemIndex ? { ...card, spent: num } : card
-              );
-          } else {
-              const newItem = Carts.find(cart => cart.id === id);
-              if (newItem) {
-                  return [...cardItems, { ...newItem, spent: num }];
-              } else {
-                  return [...cardItems, { id, value: num, image: '', name: '', spent: 0, color: '', TotalValue: 0 }];
-              }
-          }
-      });
+      const updateCartsSpent = (num: number, id: number) => {
+        SetCards((prevCards) =>
+          prevCards.map((card) =>
+            card.id === id ? { ...card, spent: num, TotalValue: num } : card
+          )
+        );
       };
 
-      const TotalvalueIncre = (id : number ) => {
+      const TotalvalueIncre = (id : number , spent : number,value : number)=>{
         const Tvalue = Cards.find(card => card.id === id)
-        if(Tvalue)
-          setTotalvalue(Totalvalue + (Tvalue.TotalValue))  
+        if(Tvalue) {
+          setTotalvalue(Totalvalue + value)
+          setTotalSpent(TotalSpent + spent)  
        }
+    }
     
     return(
         <AccountContext.Provider value={{
             Totalvalue,
             setTotalvalue,
-            Carts,
-            setCarts,
             updateCartsValue,
             updateCartsSpent,
             Cards,
             SetCards,
-            TotalvalueIncre
+            TotalvalueIncre,
+            TotalSpent
         }}>
         {children}
         </AccountContext.Provider>
