@@ -3,7 +3,7 @@ import Cards from "./Cards";
 
 function HomeMain() {
   return (
-    <div>
+    <div className="flex flex-col gap-20">
       <Header />
       <Cards />
     </div>

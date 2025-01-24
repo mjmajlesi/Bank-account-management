@@ -21,7 +21,7 @@ function Home() {
   return (
     <div>
       <Container>
-        <div className="flex flex-col md:flex-row items-center justify-center md:justify-around gap-10 my-20">
+        <div className="flex flex-col md:flex-row items-center justify-center md:justify-around gap-10">
           <div className="flex flex-row items-center gap-20">
             <div className="flex flex-col items-center gap-5">
               <span className="text-5xl font-semibold ">{Totalvalue}</span>

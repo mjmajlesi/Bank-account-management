@@ -21,17 +21,17 @@ function Header() {
   };
   return (
     <Container>
-      <div className="flex items-center justify-around my-20">
+      <div className="flex items-center justify-around">
         <div className="w-2/3">
-          <h1 className="font-semibold text-4xl my-8 ">
+          <h1 className="font-semibold text-3xl my-4 ">
             Better personal discipline for a better life
           </h1>
-          <p className="font-normal text-lg p-2">
+          <p className="font-normal text-base p-2">
             On this site, we have an "advanced to-do list" and an <br />
             "account manager" to calculate your daily income and expenses <br />
             and save you time and money by beautiful UI and Ux.
           </p>
-          <div className="my-5 p-5 flex gap-10">
+          <div className="my-2 p-5 flex gap-10">
             <Button
               onClick={() => goLinks("/account")}
               variant="normal"
@@ -49,7 +49,7 @@ function Header() {
           </div>
         </div>
         <div className="w-1/3">
-          <Lottie options={defaultOptions} height={350} width={400} />
+          <Lottie options={defaultOptions}  height={250} width={250} />
         </div>
       </div>
     </Container>
