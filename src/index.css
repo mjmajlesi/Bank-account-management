@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-main text-White text-base;
+  @apply bg-main text-White text-base ;
   font-family: "Poppins", serif;
+  margin: 0;
 }

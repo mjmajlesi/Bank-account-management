@@ -27,7 +27,7 @@ function Navbar() {
   const toggleNav = () => setIsNavOpen(!isNavOpen);
 
   return (
-    <div className="mb-10">
+    <div className="mb-20">
       <div className={`${isNavOpen ? "Navbar" : "mb-24"}`}>
         <Container>
           <div className="flex justify-between items-center pt-3">

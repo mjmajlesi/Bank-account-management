@@ -22,6 +22,9 @@ export interface IAccountContext {
   Cards : ICarts[];
   TotalvalueIncre : (id : number , spent : number ,value:number)=> void;
   TotalSpent : number;
+  totalMoney : number;
+  settotalMoney :  React.Dispatch<React.SetStateAction<number>>;
+
 }
 
 const AccountContext = createContext({} as IAccountContext);
@@ -35,6 +38,7 @@ export function AccountContextProvider({children} : Ichildren){
 
     const [Totalvalue , setTotalvalue] = useLocalNumStorage("totalValue");
     const [TotalSpent , setTotalSpent] = useLocalNumStorage("totalSpent");
+    const [totalMoney , settotalMoney] = useLocalNumStorage("totalMoney");
 
       const [Cards , SetCards] = useLocalStorage<ICarts[]>("Carts" , []);
 
@@ -70,7 +74,9 @@ export function AccountContextProvider({children} : Ichildren){
             Cards,
             SetCards,
             TotalvalueIncre,
-            TotalSpent
+            TotalSpent,
+            totalMoney,
+            settotalMoney
         }}>
         {children}
         </AccountContext.Provider>

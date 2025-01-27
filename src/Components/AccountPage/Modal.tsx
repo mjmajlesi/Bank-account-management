@@ -40,7 +40,7 @@ const Modal = ({
               id="value"
               className="bg-[rgba(49,49,49,0.8)] p-1 rounded-lg"
               value={value}
-              type="number"
+              type="text"
               onChange={(e) => updateCartsValue(Number(e.target.value) , id)}
             />
           </div>
@@ -50,8 +50,9 @@ const Modal = ({
             </label>
             <input
               id="spent"
+              value={Spent}
               className="bg-[rgba(49,49,49,0.8)] p-1 rounded-lg"
-              type="number"
+              type="text"
               onChange={(e) => updateCartsSpent(Number(e.target.value) , id)}
             />
           </div>

@@ -6,7 +6,7 @@ import { useAccountContext } from "./AccountContext";
 import { useState } from "react";
 import NewModal from "./AddModal";
 function Home() {
-  const { Totalvalue, Cards, TotalSpent } = useAccountContext();
+  const { Totalvalue, Cards, TotalSpent , totalMoney , settotalMoney } = useAccountContext();
   const [ShowModal, setShowModal] = useState(false);
 
 
@@ -21,12 +21,12 @@ function Home() {
   return (
     <div>
       <Container>
-        <div className="flex flex-col md:flex-row items-center justify-center md:justify-around gap-10">
-          <div className="flex flex-row items-center gap-20">
-            <div className="flex flex-col items-center gap-5">
-              <span className="text-5xl font-semibold ">{Totalvalue}</span>
-              <span className="text-5xl font-semibold ">{TotalSpent}</span>
-              <span className="text-5xl font-semibold ">{Totalvalue}</span>
+        <div className="flex flex-col items-center justify-center gap-20 ">
+          <div className="flex flex-col md:flex-row md:items-center items-start justify-center gap-10">
+            <div className="flex flex-col items-start  gap-5 w-[500px]">
+              {ShowModal ? <input className="text-xl md:text-3xl font-semibold bg-main " onChange={(e) => settotalMoney(Number(e.target.value))} /> : <input className="text-xl md:text-3xl font-semibold bg-main  " value={`Total Money : ${totalMoney} T`} disabled />}
+              <span className="text-xl md:text-3xl font-semibold ">Total ValueGoal : {Totalvalue} T</span>
+              <span className="text-xl md:text-3xl font-semibold ">Total Spent : {TotalSpent} T</span>
             </div>
             <div className="flex flex-col items-center gap-5">
               <p>For 18 january To 3 February</p>
@@ -39,7 +39,7 @@ function Home() {
               </Button>
             </div>
           </div>
-          <div>
+          <div className="mb-10">
             <DoughnutChart />
           </div>
         </div>

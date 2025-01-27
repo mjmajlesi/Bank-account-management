@@ -8,13 +8,17 @@ import { AccountContextProvider } from "./Components/AccountPage/AccountContext"
 function App() {
   return (
     <AccountContextProvider>
+      <div className="flex flex-col min-h-screen">
       <Navbar />
+      <main className="flex-grow">
       <Routes>
         <Route element={<HomeMain />} path="/" />
         <Route element={<Home />} path="/account" />
         <Route element={<Login />} path="/login" />
       </Routes>
+      </main>
       <Footer />
+      </div>
     </AccountContextProvider>
   );
 }

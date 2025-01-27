@@ -4,7 +4,7 @@ import { IconContext } from "react-icons";
 
 const Footer = () => {
   return (
-    <div className="pb-2 mt-20">
+    <div className="pb-2 abslote bottom-0 mt-20">
       <Container>
         <hr />
         <div className="flex items-center gap-10 lg:justify-between mt-5">
