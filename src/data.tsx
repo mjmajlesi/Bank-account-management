@@ -4,6 +4,9 @@ import Coffee from "./image/coffee-svgrepo-com.svg";
 import dinnigHall from "./image/food-svgrepo-com.svg";
 import taxi from "./image/taxi-svgrepo-com.svg";
 import Tea from "./image/tea-svgrepo-com.svg";
+import GameNet from './image/gamenet.svg';
+import Home from './image/Home.svg';
+import Sundry from './image/sundry.svg';
 
 export const Category = [
     {
@@ -40,7 +43,7 @@ export const Category = [
       value : 0,
       spent : 0,
       TotalValue : 0,
-      color : "white"
+      color : "blue"
     },
     {
       id : 5,
@@ -59,5 +62,32 @@ export const Category = [
       spent : 0,
       TotalValue : 0,
       color : "black"
+    },
+    {
+      id : 7,
+      name: "GameNet",
+      image: GameNet,
+      value : 0,
+      spent : 0,
+      TotalValue : 0,
+      color : "white"
+    },
+    {
+      id : 8,
+      name: "Dorm",
+      image: Home,
+      value : 0,
+      spent : 0,
+      TotalValue : 0,
+      color : "#083ab8"
+    },
+    {
+      id : 9,
+      name: "Sundries",
+      image: Sundry,
+      value : 0,
+      spent : 0,
+      TotalValue : 0,
+      color : "#d1d5df"
     },
   ];
