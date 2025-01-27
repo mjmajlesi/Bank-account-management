@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Button from "../Buttun";
 import Modal from "./Modal";
+import Close from "../../image/delete.svg";
 import { useAccountContext } from "./AccountContext";
 
 interface Icart {
@@ -25,30 +25,23 @@ function Cart({ name, image, id, value , spent }: Icart) {
   
 
   return (
-    <div className="border-2 border-white w-[300px] flex items-center p-3 justify-between rounded-xl">
-      <div>
+    <div className="border-2 border-white flex items-center p-3 px-7 justify-between rounded-xl relative">
+      <div className="transition delay-150 hover:scale-110 flex flex-col items-center gap-1" onClick={ShowToModal}>
         <img width="50px" src={image} alt="Cocacola" />
+        <span className="font-semibold">{name}</span>
       </div>
       <div className="flex flex-col items-center gap-1">
-        <span className="text-xl font-semibold">{name}</span>
         <span className="text-sm font-medium">{value}</span>
         <span className="text-sm font-medium text-[#970909]">-{spent}</span>
-      </div>
-      <div className="flex flex-col items-center gap-2 w-1/4">
-        <Button
-          variant="normal"
-          onClick={ShowToModal}
-          className="py-0.5 px-1 w-full  bg-gradient-to-r from-[#FED8BE] to-[#FCFCFC] transition delay-150 hover:scale-110 "
-        >
-          Edit
-        </Button>
-        <Button
-          variant="normal"
+        <span className="text-sm text-Blue">{value != 0 && value - spent}</span>
+        <div className="flex flex-col items-center gap-2 w-1/4">
+        <img
+          width="30px"
+          src={Close}
           onClick={handleDelete}
-          className="py-0.5 px-1 w-full bg-red-500 hover:bg-red-600 transition delay-150"
+          className=" absolute right-[-8px] top-[-10px] rounded-xl"
         >
-          Delete
-        </Button>
+        </img>
         {ShowModal && (
           <Modal
             ShowModal={ShowModal}
@@ -59,8 +52,9 @@ function Cart({ name, image, id, value , spent }: Icart) {
             id={id}
           />
         )}
-        <span className="text-sm text-Blue">{value != 0 && value - spent}</span>
       </div>
+      </div>
+      
     </div>
   );
 }
