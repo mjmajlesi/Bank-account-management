@@ -43,7 +43,7 @@ function Home() {
             <DoughnutChart />
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-10">
+        <div className="grid grid-cols-5 gap-10">
           {Cards.map((cart, index) => (
             <Cart
               key={index}

@@ -79,7 +79,10 @@ export const Category = [
       value : 0,
       spent : 0,
       TotalValue : 0,
-      color : "#083ab8"
+      color : "#083ab8",
+      items : {
+        "Oil" : 0,
+      }
     },
     {
       id : 9,

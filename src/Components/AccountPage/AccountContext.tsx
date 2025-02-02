@@ -52,7 +52,7 @@ export function AccountContextProvider({children} : Ichildren){
       const updateCartsSpent = (num: number, id: number) => {
         SetCards((prevCards) =>
           prevCards.map((card) =>
-            card.id === id ? { ...card, spent: num, TotalValue: num } : card
+            card.id === id ? { ...card, spent: num, TotalValue: num } : card 
           )
         );
       };
