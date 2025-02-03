@@ -22,16 +22,16 @@ function Cart({ name, image, id, value , spent }: Icart) {
   /*const handleDelete = () => {
     SetCards(prevCards => prevCards.filter(card => card.id !== id));
   }; */
-  
 
   return (
-    <div className=" flex flex-col items-center p-3 justify-between rounded-xl">
+    <div>
+    <div className=" flex flex-row items-center p-3 justify-between rounded-xl">
       <div className="transition delay-150 hover:scale-110 flex flex-col items-center gap-1" onClick={ShowToModal}>
         <img width="50px" src={image} alt="Cocacola" />
-        <span className="font-semibold">{name}</span>
       </div>
       <div className="flex flex-col items-center gap-1">
         <span className="text-sm font-medium">{value} T</span>
+        <span className="text-sm font-medium text-[#8c1a1a]">- {spent} T</span>
         <div className="flex flex-col items-center gap-2 w-1/4">
         {/*
                 <img
@@ -55,7 +55,17 @@ function Cart({ name, image, id, value , spent }: Icart) {
         )}
       </div>
       </div>
-      
+    </div>
+    <div className="flex flex-row-reverse items-center justify-between gap-1 w-full">
+    <div className="h-1 w-full bg-White rounded-lg">
+    <div
+      style={{ width: `${(value - spent) <= 0 ? 0 : ((value - spent) / value) * 100}%` }}
+      className="h-full bg-Blue rounded-lg"
+    ></div>
+  </div>
+    <span className="text-xs">Remaider</span>
+    </div>
+
     </div>
   );
 }

@@ -6,69 +6,60 @@ import { useAccountContext } from "./AccountContext";
 import { useState } from "react";
 import NewModal from "./AddModal";
 function Home() {
-  const { Totalvalue, Cards, TotalSpent , totalMoney , settotalMoney } = useAccountContext();
-  const [ShowModal, setShowModal] = useState(false);
+  const { Totalvalue, Cards, TotalSpent } = useAccountContext();
 
-
-  const ShowToModal = () => {
-    setShowModal(!ShowModal);
-  };
   const [isNewModalOpen, setIsNewModalOpen] = useState(false);
 
 
   const handleOpenModal = () => setIsNewModalOpen(true);
-
+  // ShowModal ? <input className="text-xl md:text-2xl font-semibold bg-main outline-none border-2 p-3 rounded-lg " onChange={(e) => settotalMoney(Number(e.target.value))} /> : <input className="text-xl md:text-3xl font-semibold bg-main   " onChange={()=> ShowToModal} value={`Total Money : ${totalMoney} T`} disabled />}
   return (
     <div>
       <Container>
-        <div className="flex flex-col items-center justify-center gap-20 ">
-          <div className="flex flex-col md:flex-row md:items-center items-start justify-center gap-10">
-            <div className="flex flex-col items-start  gap-5 w-[500px]">
-              {ShowModal ? <input className="text-xl md:text-3xl font-semibold bg-main " onChange={(e) => settotalMoney(Number(e.target.value))} /> : <input className="text-xl md:text-3xl font-semibold bg-main  " value={`Total Money : ${totalMoney} T`} disabled />}
-              <span className="text-xl md:text-3xl font-semibold ">Total ValueGoal : {Totalvalue} T</span>
-              <span className="text-xl md:text-3xl font-semibold ">Total Spent : {TotalSpent} T</span>
+        <div className="flex flex-col items-center justify-center gap-20 mb-36 ">
+          <div className="grid grid-cols-2 gap-5 w-1/2">
+            <div className="border-2 rounded-lg p-3 flex items-center justify-between ">
+              <span className="text-xl md:text-2xl font-semibold ">Total ValueGoal :</span>
+              <span className="text-md font-medium">{Totalvalue} T</span>
             </div>
-            <div className="flex flex-col items-center gap-5">
-              <p>For 18 january To 3 February</p>
-              <Button
-                variant="normal"
-                onClick={ShowToModal}
-                className=" w-full  bg-gradient-to-r from-[#FED8BE] to-[#FCFCFC] transition delay-150 hover:scale-105 "
-              >
-                {ShowModal ? "Submit" : "Edit"}
-              </Button>
+            <div className="border-2 rounded-lg p-3 flex items-center justify-between ">
+              <span className="text-xl md:text-2xl font-semibold ">Total Spent :</span>
+              <span className="text-md font-medium">{TotalSpent} T</span>
             </div>
           </div>
-          <div className="mb-10">
+        </div>
+        <div className="flex flex-row items-center justify-between gap-20">
+          <div className="mb-10 w-1/3">
             <DoughnutChart />
           </div>
+          <div className="grid grid-cols-3 gap-10 w-2/3">
+            {Cards.map((cart, index) => (
+              <Cart
+                key={index}
+                name={cart.name}
+                image={cart.image}
+                id={cart.id}
+                value={cart.value}
+                spent={cart.spent}
+              />
+            ))}
+            <Button
+              variant="normal"
+              onClick={handleOpenModal}
+              className="text-3xl font-semibold"
+            >
+              Add
+            </Button>
+          </div>
         </div>
-        <div className="grid grid-cols-5 gap-10">
-          {Cards.map((cart, index) => (
-            <Cart
-              key={index}
-              name={cart.name}
-              image={cart.image}
-              id={cart.id}
-              value={cart.value}
-              spent={cart.spent}
-            />
-          ))}
-        <Button
-          variant="normal"
-          onClick={handleOpenModal}
-          className="text-3xl font-semibold"
-        >
-          Add
-        </Button>
 
-        <NewModal 
-          isOpen={isNewModalOpen} 
-          onClose={() => setIsNewModalOpen(false)} 
+        <NewModal
+          isOpen={isNewModalOpen}
+          onClose={() => setIsNewModalOpen(false)}
         />
-        </div>
-      </Container>
+      </Container >
     </div>
+
   );
 }
 
